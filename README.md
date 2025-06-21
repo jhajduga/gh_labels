@@ -2,7 +2,7 @@
 
 # 🎯 GitHub LabelSync
 
-> A powerful CLI tool to manage and synchronize your GitHub labels using a TOML file and the GitHub CLI.
+> A powerful but simple CLI tool to manage and synchronize your GitHub labels using a TOML file and the GitHub CLI.
 
 ![Python](https://img.shields.io/badge/Python-3.11+-blue)
 ![GitHub CLI](https://img.shields.io/badge/gh--cli-required-red)
