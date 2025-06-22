@@ -1,136 +1,198 @@
-
-
 # 🎯 GitHub LabelSync
 
 > A powerful but simple CLI tool to manage and synchronize your GitHub labels using a TOML file and the GitHub CLI.
 
-![Python](https://img.shields.io/badge/Python-3.11+-blue)
-![GitHub CLI](https://img.shields.io/badge/gh--cli-required-red)
-![Loguru](https://img.shields.io/badge/logging-loguru-green)
+[![Python](https://img.shields.io/badge/Python-3.11+-blue)](https://www.python.org/downloads/release/python-3110/) 
+[![GitHub CLI](https://img.shields.io/badge/gh--cli-required-red)](https://cli.github.com/) 
+[![Loguru](https://img.shields.io/badge/logging-loguru-green)](https://github.com/Delgan/loguru)
 
 ---
 
 ## 🚀 Features
 
-- 🔄 Full sync of GitHub labels from `TOML` files
-- 🔥 Interactive confirmation before changes
-- 🧪 Dry-run mode for safe previewing
-- 🗑️ Optional deletion of existing labels
-- 🧾 Automatic backup of current label state
-- 🎨 Colorful console logs and structured logs to file
-- 🧠 Global exception handling for better debugging
+- 🔄 Full sync of GitHub labels from a simple `TOML` file
+- 🪪 Dry-run mode for previewing what would happen
+- 🗑️ Optional deletion of existing labels before creation
+- 📦 Automatic backup of current labels before modification
+- 🔥 Interactive confirmation prompt before applying changes
+- 🧣 Logging to file (`labels_sync.log`) and colorful terminal output
+- ⚙️ Easily configurable and scriptable via command-line interface
 
 ---
 
-## 📦 Installation
+## 📦 Installation 
+> ℹ️ **Not required** – You can also run it directly as a Python script. See [Usage](#-usage) below.
 
-### 🐍 pip
+To use the `labelsync-cli` command, you must first install this project either via `pip` or with `conda`. Below are both options.
 
+### 🐍 pip (development mode)
 ```bash
-pip install loguru tomli-w
-````
-
-**Python 3.11 or newer is required** due to use of `tomllib`.
-
-### 🐍 Conda
-
-```bash
-conda create -n labelsync python=3.11 -y
-conda activate labelsync
-conda install conda-forge::loguru
-conda install conda-forge::tomli-w
+git clone https://github.com/your-user/labelsync.git
+cd labelsync
+pip install -e .
 ```
 
+### 🐍 Conda (new environment)
+```bash
+git clone https://github.com/your-user/labelsync.git
+cd labelsync
+conda env create -f environment.yml
+conda activate labelsync
+pip install -e .  # registers the CLI command
+```
 
----
+### 🧰 Conda (existing environment)
+```bash
+conda install conda-forge::loguru
+conda install conda-forge::tomli-w
+pip install -e .  # only if not already installed
+```
 
-## ⚙️ Requirements
+> ⚠️ Requires Python 3.11 or newer (because of built-in `tomllib` support)
 
-* Python 3.11+
-* GitHub CLI (`gh`) installed and authenticated:
-
+Also make sure GitHub CLI (`gh`) is installed and authenticated:
 ```bash
 gh auth login
 ```
 
 ---
 
-## 📝 Usage
+## 🧪 Usage
 
-### 🧪 Basic usage
+You can use the tool in two ways:
 
+### ✅ 1. As a CLI command
 ```bash
-python sync_labels.py --repo your-user/your-repo
+labelsync-cli --repo your-user/your-repo
 ```
 
-This will:
+### ✅ 2. As a script (no installation)
+```bash
+python -m labelsync.cli --repo owner/repo --file examples/labels.toml
+```
 
-1. Back up current labels to a timestamped `.toml` file
-2. Delete existing labels
-3. Create new labels from `labels.toml`
+Both versions support the same arguments:
 
-### 🛠 Options
+### ⚖️ Options
 
-| Flag            | Description                                   |
-| --------------- | --------------------------------------------- |
-| `--repo`        | (required) GitHub repo in format `owner/repo` |
-| `--file`        | Custom TOML file (default: `labels.toml`)     |
-| `--skip-delete` | Skip deleting existing labels                 |
-| `--dry-run`     | Simulate actions without changing anything    |
-| `--log-level`   | Console log level (`DEBUG`, `INFO`, etc.)     |
+| Flag             | Description                                                       |
+|------------------|-------------------------------------------------------------------|
+| `--repo`         | **(required)** GitHub repository in `owner/repo` format           |
+| `--file`         | Path to TOML label file (default: `labels.toml`)                  |
+| `--skip-delete`  | Keep existing labels, only add/update new ones                    |
+| `--dry-run`      | Simulate changes without touching GitHub                          |
+| `--log-level`    | Console log level: `DEBUG`, `INFO`, `WARNING`, or `ERROR`         |
 
-### 📦 Example
+### 🧾 Full Example
 
 ```bash
-python sync_labels.py \
-  --repo jhajduga/gh_labels \
-  --file my_labels.toml \
+labelsync-cli \
+  --repo jhajduga/labelsync \
+  --file examples/labels.toml \
   --skip-delete \
   --log-level DEBUG
 ```
 
 ---
 
-## 📄 Example label file in TOML Format
+## 📄 Label file format (TOML)
 
-This project includes an example TOML file located at:
-
-```bash
-examples/labels.toml
-````
-
-It contains a predefined set of labels commonly used in this tool's development, including categories like:
-
-* `feature`, `refactor`, `logging`, `cli`
-* `backup`, `dry-run`, `config`
-* community flags like `good first issue`, `help wanted`
-
-Each label entry includes a `name`, `description`, and `color` field.
+The `labels.toml` file defines what labels should exist in the repo.
 
 ```toml
 [[label]]
-name = "logging"
-description = "Changes to logging, logger setup, or output formatting."
-color = "008672"
+name = "bug"
+description = "Something isn't working as expected."
+color = "d73a4a"
+
+[[label]]
+name = "feature"
+description = "New functionality added to the label sync tool."
+color = "0e8a16"
 ```
 
-You can customize and reuse this file in your own repository syncs.
-
-
----
-
-## 🧠 Advanced features
-
-* 📁 `labels_sync.log` contains full stack traces on failure
-* 💥 Global exception hook logs unexpected crashes
-* 💅 `logger_setup.py` can be reused in your own tools
+A full example is included here:
+```bash
+examples/labels.toml
+```
 
 ---
 
-## 📤 Future plans
+## 📂 Project structure
 
-* 🧰 Turn into a real CLI package (`labelsync`)
-* 🐍 Add `setup.py` / `pyproject.toml`
-* 🌐 Upload to PyPI and Conda
-* 📤 Export labels from a repo to TOML (planned)
+```
+labelsync/
+├── labelsync/           # Main logic and logger setup
+│   ├── __init__.py
+│   ├── sync.py
+│   ├── logger_setup.py
+│   └── cli.py
+│
+├── examples/            # Example TOML label set
+│   └── labels.toml
+│
+├── tests/               # Unit tests
+│   └── test_parsing.py
+│
+├── README.md            # This file
+├── CONTRIBUTING.md      # Contribution guidelines
+├── requirements.txt     # pip-based dependencies
+├── environment.yml      # conda environment
+└── pyproject.toml       # Project metadata & CLI definition
+```
 
+---
+
+## 🤝 Contributing
+
+Pull requests are welcome! See [`CONTRIBUTING.md`](CONTRIBUTING.md) for setup, coding conventions, and submission instructions.
+
+---
+
+## 🔧 For Developers
+
+To run tests:
+```bash
+pytest tests/
+```
+
+To check the code manually:
+```bash
+flake8 labelsync/
+```
+
+<!-- ---
+
+## ⚙️ Planned GitHub Actions
+
+```yaml
+name: CI
+on: [push, pull_request]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: conda-incubator/setup-miniconda@v2
+        with:
+          activate-environment: labelsync
+          environment-file: environment.yml
+      - run: pip install -e .
+      - run: pytest tests/
+``` -->
+
+---
+
+## 🔮 Coming soon
+
+- `labelsync export` — export existing labels to TOML
+- `labelsync validate` — validate TOML structure before applying
+- PyPI distribution and versioning
+- Conda-forge packaging support
+- Better tests
+
+---
+
+## 📜 License
+
+MIT License. Do what you want — just don’t blame us if your labels explode. 😅

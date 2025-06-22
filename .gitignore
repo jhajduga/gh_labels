@@ -1,12 +1,24 @@
+# Python
 __pycache__/
-
+*.py[cod]
+*.egg-info/
 *.log
 
-docs/_build/
-
+# Conda / pip / venv
 .env
-.envrc
-.venv
+.venv/
 env/
-venv/
-ENV/
+*.yaml.lock
+
+# VSCode / PyCharm
+.vscode/
+.idea/
+
+# Mac / Linux trash
+.DS_Store
+Thumbs.db
+
+# Project Backup toml's 
+backup*
+
+ignoreme/
