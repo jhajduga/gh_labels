@@ -1,0 +1,127 @@
+# labels.toml
+# Example label definitions for GitHub LabelSync tool
+# Each label has a name, description, and a HEX color code (no leading #)
+
+# labels.toml
+# Example label definitions for GitHub LabelSync tool
+# Each label has a name, description, and a HEX color code (no leading #)
+
+[[label]]
+name = "bug"
+description = "Something isn't working as expected."
+color = "d73a4a"
+
+[[label]]
+name = "feature"
+description = "New functionality added to the label sync tool."
+color = "0e8a16"
+
+[[label]]
+name = "enhancement"
+description = "Improvement of existing functionality."
+color = "a2eeef"
+
+[[label]]
+name = "refactor"
+description = "Code cleanup or restructuring with no functional change."
+color = "f4b942"
+
+[[label]]
+name = "docs"
+description = "Changes to documentation, README, or inline docstrings."
+color = "0075ca"
+
+[[label]]
+name = "config"
+description = "Configuration, environment, or packaging improvements."
+color = "c2e0c6"
+
+[[label]]
+name = "cli"
+description = "Related to the command-line interface behavior or UX."
+color = "5319e7"
+
+[[label]]
+name = "logging"
+description = "Changes to log output, formatting, or logger setup."
+color = "006b75"  # Updated to avoid duplicate with help wanted
+
+[[label]]
+name = "ci"
+description = "Continuous integration or GitHub Actions workflows."
+color = "d4c5f9"
+
+[[label]]
+name = "testing"
+description = "Tests (unit, integration, CLI) or test infrastructure."
+color = "f9d0c4"
+
+[[label]]
+name = "backup"
+description = "Related to backup of GitHub labels or restoration logic."
+color = "fbca04"
+
+[[label]]
+name = "dry-run"
+description = "Related to preview or dry-run execution mode."
+color = "cfd3d7"
+
+[[label]]
+name = "idea"
+description = "Concept, proposal or rough idea to explore."
+color = "c5def5"
+
+[[label]]
+name = "future"
+description = "Not prioritized yet — for possible future inclusion."
+color = "bfdadc"
+
+[[label]]
+name = "internal"
+description = "Internal project logic, not exposed as CLI features."
+color = "e99695"
+
+[[label]]
+name = "gui"
+description = "Graphical interface or external GUI frontend project."
+color = "c7def8"
+
+[[label]]
+name = "quality"
+description = "Code style, linting, typing or best practice updates."
+color = "e2c5f9"
+
+[[label]]
+name = "security"
+description = "Security-sensitive logic, access control, or vulnerabilities."
+color = "b60205"
+
+[[label]]
+name = "infra"
+description = "Development infrastructure, build system, or local tooling."
+color = "fef2c0"
+
+[[label]]
+name = "performance"
+description = "Performance or efficiency optimization."
+color = "ff8c00"
+
+[[label]]
+name = "good first issue"
+description = "Good starting point for new contributors."
+color = "7057ff"
+
+[[label]]
+name = "help wanted"
+description = "Looking for external contribution or community input."
+color = "008672"
+
+[[label]]
+name = "question"
+description = "Request for clarification or usage-related discussion."
+color = "d876e3"
+
+[[label]]
+name = "wontfix"
+description = "This will not be fixed or addressed intentionally."
+color = "ffffff"

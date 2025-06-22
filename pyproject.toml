@@ -1,0 +1,38 @@
+# pyproject.toml
+
+[build-system]
+requires = ["setuptools>=61.0"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "labelsync"
+version = "0.1.0"
+description = "GitHub LabelSync CLI – synchronize your GitHub labels using TOML and gh-cli"
+authors = [
+    { name="Jakub Hajduga", email="jhajduga@agh.edu.pl.com" }
+]
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.11"
+dependencies = [
+    "loguru",
+    "tomli-w",
+    "PyYAML"
+]
+keywords = ["GitHub", "labels", "automation", "CLI", "tool"]
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent"
+]
+
+[project.urls]
+Homepage = "https://github.com/jhajduga/labelsync"
+Repository = "https://github.com/jhajduga/labelsync"
+Issues = "https://github.com/jhajduga/labelsync/issues"
+
+[project.scripts]
+labelsync-cli = "labelsync.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["."]
